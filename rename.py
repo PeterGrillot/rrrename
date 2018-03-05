@@ -92,7 +92,7 @@ class Widget(QWidget):
 			print(fullPath,findString, replaceString)
 			os.rename(fullPath, fullPath.replace(findString, replaceString))
 
-		statusText = 'Reanmed ' + len(os.listdir(self.filePath) + ' items')
+		statusText = 'Reanmed ' + str(len(os.listdir(self.filePath)) + ' items')
 		self.textboxStatus.setText(statusText)
 
 '''Main Window'''
