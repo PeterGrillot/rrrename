@@ -1,24 +1,20 @@
 #!/usr/bin/env python3
 
 '''Imports'''
-import sys
 import os
 from PyQt5.QtWidgets import (
 	QMainWindow,
 	QWidget,
 	QPushButton,
-	QApplication,
 	QFileDialog,
 	QLineEdit,
 	QGridLayout,
 	QLabel)
-from PyQt5.QtGui import QIcon
 
 '''Widget'''
 class Widget(QWidget):
 	def __init__(self):
 		super().__init__()
-		self.title = 'Rename'
 		self.initUI()
 
 	def initUI(self):
@@ -65,7 +61,7 @@ class Widget(QWidget):
 		renameFileButton = QPushButton('&rrrename', self)
 		renameFileButton.setProperty('mandatoryField', True);
 		renameFileButton.move(250,140)
-		renameFileButton.setToolTip('This will find and replace the files inside the directory')
+		renameFileButton.setToolTip('Find and replace on names of the file inside the directory')
 		renameFileButton.clicked.connect(self.renameFile)
 
 		'''
@@ -94,7 +90,7 @@ class Widget(QWidget):
 			print(fullPath,findString, replaceString)
 			os.rename(fullPath, fullPath.replace(findString, replaceString))
 
-		statusText = 'Reanmed ' + str(len(os.listdir(self.filePath)) + ' items')
+		statusText = 'Renamed ' + str(len(os.listdir(self.filePath))) + ' items'
 		self.textboxStatus.setText(statusText)
 
 '''Main Window'''
@@ -105,17 +101,6 @@ class MainWindow(QMainWindow):
 		self.setCentralWidget(centralWidget)
 		self.setGeometry(100, 100, 400, 180)
 		self.setStyleSheet(open('static/style.qss', 'r').read())
-		self.setWindowIcon(QIcon('static/rename.png'))
 		self.setWindowTitle('rrrename | Batch Renaming Tool')
+		self.title = 'Rename'
 		self.filePath = ''
-
-'''Render and Execute'''
-def main():
-	app = QApplication(sys.argv)
-	ex = Widget()
-	mw = MainWindow()
-	mw.show()
-	sys.exit(app.exec_())
-
-if __name__ == '__main__':
-	main()
