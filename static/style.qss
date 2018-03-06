@@ -31,3 +31,10 @@ QPushButton:hover{
 }
 QPushButton[mandatoryField="true"] { background-color: #74C675 }
 QPushButton[mandatoryField="true"]:hover { background-color: #8BE39F }
+
+QToolTip{
+	background-color: white;
+	padding: 4px;
+	border-color: #666666;
+	border-radius: 4px;
+}

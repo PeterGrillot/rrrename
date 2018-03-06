@@ -30,8 +30,8 @@ class Widget(QWidget):
 
 		'''Find Input'''
 		self.textboxFind = QLineEdit(self)
-		self.textboxFind.setFixedWidth(300)
-		self.textboxFind.move(80,18)
+		self.textboxFind.setFixedWidth(280)
+		self.textboxFind.move(100,18)
 
 		'''Replace Label'''
 		replaceLabel = QLabel('Replace', self)
@@ -39,8 +39,8 @@ class Widget(QWidget):
 
 		'''Replace Input'''
 		self.textboxReplace = QLineEdit(self)
-		self.textboxReplace.setFixedWidth(300)
-		self.textboxReplace.move(80,58)
+		self.textboxReplace.setFixedWidth(280)
+		self.textboxReplace.move(100,58)
 
 		'''Readonly Directory Output'''
 		self.textboxSelectedDirectory = QLineEdit('No Directory Selected', self)
@@ -59,11 +59,13 @@ class Widget(QWidget):
 		'''
 		self.getDirectoryButton = QPushButton('&Select directory', self)
 		self.getDirectoryButton.move(20,140)
+		self.getDirectoryButton.setToolTip('Select the directory you want rrrename to crawl though. This action is <strong>not</strong> recursive.')
 		self.getDirectoryButton.clicked.connect(self.openFile)
 
-		renameFileButton = QPushButton('&Rename Files', self)
+		renameFileButton = QPushButton('&rrrename', self)
 		renameFileButton.setProperty('mandatoryField', True);
 		renameFileButton.move(250,140)
+		renameFileButton.setToolTip('This will find and replace the files inside the directory')
 		renameFileButton.clicked.connect(self.renameFile)
 
 		'''
@@ -102,10 +104,9 @@ class MainWindow(QMainWindow):
 		centralWidget = Widget()          
 		self.setCentralWidget(centralWidget)
 		self.setGeometry(100, 100, 400, 180)
-		self.setStyleSheet(open('assets/style.qss', 'r').read())
-
-		self.setWindowTitle('Rename | Batch Renaming Tool')
-		self.setWindowIcon(QIcon('assets/rename.png'))
+		self.setStyleSheet(open('static/style.qss', 'r').read())
+		self.setWindowIcon(QIcon('static/rename.png'))
+		self.setWindowTitle('rrrename | Batch Renaming Tool')
 		self.filePath = ''
 
 '''Render and Execute'''
